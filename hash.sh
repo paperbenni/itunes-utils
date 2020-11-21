@@ -2,7 +2,8 @@
 
 function urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 
-cat Media*.xml | grep -o 'file://.*' | sed 's/<\/string>$//g' | sed 's/file:\/\/localhost\/C:/\/c/g' | perl -MHTML::Entities -pe 'decode_entities($_);'> files.txt
+source utils.sh || exit 1
+ituneslist Media*.xml > files.txt
 
 while read i
 do
